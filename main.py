@@ -7,6 +7,7 @@ CURTIDAS = "span[class='html-span xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4ua
 SCROLL_AMOUNT = 1500
 NOME_PLANILHA_EXCEL = "urls_dropshipping.xlsx"
 QUANTIDADE_LIKES_PUBLICACAO = 100
+ABRIR_ANUNCIOS = True
 
 
 def main():
@@ -24,8 +25,11 @@ def main():
                         if likes_int > QUANTIDADE_LIKES_PUBLICACAO:
                             try:
                                 ad = publi.find_element(By.CSS_SELECTOR, LINK_ANUNCIO)
-                                ad.click()
-                                fechar_aba_anuncio(driver)
+
+                                if ABRIR_ANUNCIOS:
+                                    ad.click()
+                                    fechar_aba_anuncio(driver)
+
                                 link_ad = ad.get_attribute("href")
 
                                 salvar_excel(
